@@ -12,7 +12,10 @@ sudo apt-get update
 sudo apt remove -y --purge openssh-server
 sudo apt install -y openssh-server
 
-# 1.2. configure sshd
+# 0.2. install basic dependencies
+sudo apt install -y cmake gcc clang gdb valgrind build-essential
+
+# 1.1. configure sshd
 sudo cp $SSHD_FILE ${SSHD_FILE}.`date '+%Y-%m-%d_%H-%M-%S'`.back
 sudo sed -i '/^Port/ d' $SSHD_FILE
 sudo sed -i '/^UsePrivilegeSeparation/ d' $SSHD_FILE
@@ -21,7 +24,7 @@ echo "# configured by CLion"      | sudo tee -a $SSHD_FILE
 echo "Port ${SSHD_PORT}"          | sudo tee -a $SSHD_FILE
 echo "UsePrivilegeSeparation no"  | sudo tee -a $SSHD_FILE
 echo "PasswordAuthentication yes" | sudo tee -a $SSHD_FILE
-# 1.3. apply new settings
+# 1.2. apply new settings
 sudo service ssh --full-restart
   
 # 2. autostart: run sshd 
@@ -34,9 +37,7 @@ if [[ $sshd_status = *"is not running"* ]]; then
 fi
 EOF
   
-# 3. install basic dependencies
-sudo apt install -y cmake gcc clang gdb valgrind build-essential
- 
+
 # summary: SSHD config info
 echo 
 echo "SSH server parameters ($SSHD_FILE):"
