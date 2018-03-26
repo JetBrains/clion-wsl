@@ -1,4 +1,6 @@
 #!/bin/bash
+set -e
+
 SSHD_PORT=2222
 SSHD_FILE=/etc/ssh/sshd_config
 SUDOERS_FILE=/etc/sudoers
