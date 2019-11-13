@@ -22,8 +22,8 @@ sudo apt install -y cmake gcc clang gdb valgrind build-essential
 
 # 1.1. configure sshd
 sudo cp $SSHD_FILE ${SSHD_FILE}.`date '+%Y-%m-%d_%H-%M-%S'`.back
-sudo sed -i '/^ListenAddress/ d' $SSHD_FILE
 sudo sed -i '/^Port/ d' $SSHD_FILE
+sudo sed -i '/^ListenAddress/ d' $SSHD_FILE
 sudo sed -i '/^UsePrivilegeSeparation/ d' $SSHD_FILE
 sudo sed -i '/^PasswordAuthentication/ d' $SSHD_FILE
 echo "# configured by CLion"      | sudo tee -a $SSHD_FILE
