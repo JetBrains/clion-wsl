@@ -21,12 +21,10 @@ sudo apt install -y cmake gcc clang gdb valgrind build-essential
 sudo cp $SSHD_FILE ${SSHD_FILE}.`date '+%Y-%m-%d_%H-%M-%S'`.back
 sudo sed -i '/^Port/ d' $SSHD_FILE
 sudo sed -i '/^ListenAddress/ d' $SSHD_FILE
-sudo sed -i '/^UsePrivilegeSeparation/ d' $SSHD_FILE
 sudo sed -i '/^PasswordAuthentication/ d' $SSHD_FILE
 echo "# configured by CLion"      | sudo tee -a $SSHD_FILE
 echo "ListenAddress ${SSHD_LISTEN_ADDRESS}"	| sudo tee -a $SSHD_FILE
 echo "Port ${SSHD_PORT}"          | sudo tee -a $SSHD_FILE
-echo "UsePrivilegeSeparation no"  | sudo tee -a $SSHD_FILE
 echo "PasswordAuthentication yes" | sudo tee -a $SSHD_FILE
 # 1.2. apply new settings
 sudo service ssh --full-restart
@@ -47,5 +45,4 @@ echo
 echo "SSH server parameters ($SSHD_FILE):"
 echo "ListenAddress ${SSHD_LISTEN_ADDRESS}"
 echo "Port ${SSHD_PORT}"
-echo "UsePrivilegeSeparation no"
 echo "PasswordAuthentication yes"
