@@ -15,7 +15,7 @@ sudo apt remove -y --purge openssh-server
 sudo apt install -y openssh-server
 
 # 0.2. install basic dependencies
-sudo apt install -y cmake gcc clang gdb valgrind build-essential
+sudo apt install -y cmake ninja-build gcc clang gdb valgrind build-essential
 
 # 1.1. configure sshd
 sudo cp $SSHD_FILE ${SSHD_FILE}.`date '+%Y-%m-%d_%H-%M-%S'`.back
